@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { Icon } from '@/components/ui/icon/Icon'
+import { Icon } from '@/components/ui/icon/icon'
 
 export function App() {
   return (
