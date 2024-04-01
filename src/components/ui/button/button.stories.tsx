@@ -52,6 +52,7 @@ export const PrimaryAsLink: Story = {
   args: {
     as: 'a',
     children: 'Button Primary as Link',
+    href: '/',
     variant: 'primary',
   },
 }
@@ -98,6 +99,7 @@ export const SecondaryAsLink: Story = {
   args: {
     as: 'a',
     children: 'Button Secondary as Link',
+    href: '/',
     variant: 'secondary',
   },
 }
