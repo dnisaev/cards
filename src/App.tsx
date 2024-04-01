@@ -5,16 +5,11 @@ export function App() {
   return (
     <div>
       <div>
-        {/*<div>*/}
-        {/*  <Button as={'a'} href={'/link'} variant={'primary'}>*/}
-        {/*    Button Primary as Link*/}
-        {/*  </Button>*/}
-        {/*</div>*/}
-
-        {/*<Button fullWidth variant={'primary'}>*/}
-        {/*  Button Primary Full Width*/}
-        {/*</Button>*/}
-
+        <Button fullWidth variant={'primary'}>
+          Button Primary Full Width
+        </Button>
+      </div>
+      <div>
         <Button variant={'primary'}>Button Primary</Button>
 
         <Button variant={'primary'}>
@@ -35,6 +30,13 @@ export function App() {
         </Button>
         <Button disabled variant={'secondary'}>
           Button Secondary Disabled
+        </Button>
+      </div>
+
+      <div>
+        <Button as={'a'} href={'/'} variant={'primary'}>
+          <Icon iconId={'logout'} />
+          Button Primary as Link
         </Button>
       </div>
     </div>

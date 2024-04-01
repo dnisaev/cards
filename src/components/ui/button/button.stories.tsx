@@ -48,6 +48,23 @@ export const PrimaryDisabled: Story = {
   },
 }
 
+export const PrimaryAsLink: Story = {
+  args: {
+    as: 'a',
+    children: 'Button Primary as Link',
+    variant: 'primary',
+  },
+}
+
+export const PrimaryFullWidth: Story = {
+  args: {
+    children: 'Button Primary Full Width',
+    disabled: false,
+    fullWidth: true,
+    variant: 'primary',
+  },
+}
+
 export const Secondary: Story = {
   args: {
     children: 'Button Secondary',
@@ -77,19 +94,19 @@ export const SecondaryDisabled: Story = {
   },
 }
 
-export const PrimaryFullWidth: Story = {
+export const SecondaryAsLink: Story = {
   args: {
-    children: 'Button Primary Full Width',
-    disabled: false,
-    fullWidth: true,
-    variant: 'primary',
+    as: 'a',
+    children: 'Button Secondary as Link',
+    variant: 'secondary',
   },
 }
 
-export const PrimaryAsLink: Story = {
+export const SecondaryFullWidth: Story = {
   args: {
-    as: 'a',
-    children: 'Button Primary as Link',
-    variant: 'primary',
+    children: 'Button Secondary Full Width',
+    disabled: false,
+    fullWidth: true,
+    variant: 'secondary',
   },
 }
