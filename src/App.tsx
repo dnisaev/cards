@@ -1,14 +1,16 @@
 import { Button } from '@/components/ui/button'
-import { Icon } from '@/components/ui/icon/icon'
+import { Icon } from '@/components/ui/icon/'
 
 export function App() {
   return (
     <div>
+      <hr />
       <div>
         <Button fullWidth variant={'primary'}>
           Button Primary Full Width
         </Button>
       </div>
+      <hr />
       <div>
         <Button variant={'primary'}>Button Primary</Button>
 
@@ -21,7 +23,7 @@ export function App() {
           Button Primary Disabled
         </Button>
       </div>
-
+      <hr />
       <div>
         <Button variant={'secondary'}>Button Secondary</Button>
         <Button variant={'secondary'}>
@@ -32,13 +34,14 @@ export function App() {
           Button Secondary Disabled
         </Button>
       </div>
-
+      <hr />
       <div>
         <Button as={'a'} href={'/'} variant={'primary'}>
           <Icon iconId={'logout'} />
           Button Primary as Link
         </Button>
       </div>
+      <hr />
     </div>
   )
 }
