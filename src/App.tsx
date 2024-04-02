@@ -1,9 +1,14 @@
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import { Icon } from '@/components/ui/icon/'
 
 export function App() {
   return (
     <div>
+      <hr />
+      <div>
+        <Checkbox checked id={'c1'} title={'Check-box with title'} />
+      </div>
       <hr />
       <div>
         <Button fullWidth variant={'primary'}>
