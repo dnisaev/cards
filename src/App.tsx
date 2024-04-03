@@ -1,10 +1,23 @@
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Icon } from '@/components/ui/icon/'
+import { RadioGroup } from '@/components/ui/radiogroup'
 
 export function App() {
+  const radioGroupExampleArray = [
+    { label: 'First value', value: 'first' },
+    { label: 'Second value', value: 'second' },
+    { label: 'Third value', value: 'third' },
+    { label: 'Fourth value', value: 'fourth' },
+    { label: 'Fifth value', value: 'fifth' },
+  ]
+
   return (
     <div>
+      <hr />
+      <div style={{ margin: '10px' }}>
+        <RadioGroup options={radioGroupExampleArray} />
+      </div>
       <hr />
       <div>
         <Checkbox checked id={'c1'} title={'Check-box with title'} />
