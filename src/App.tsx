@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Icon } from '@/components/ui/icon/'
 import { RadioGroup } from '@/components/ui/radiogroup'
+import { Select } from '@/components/ui/select'
 
 export function App() {
   const radioGroupExampleArray = [
@@ -14,6 +15,10 @@ export function App() {
 
   return (
     <div>
+      <hr />
+      <div style={{ margin: '10px' }}>
+        <Select ariaLabel={'Select-box'} placeholder={'Select-box'} />
+      </div>
       <hr />
       <div style={{ margin: '10px' }}>
         <RadioGroup options={radioGroupExampleArray} />

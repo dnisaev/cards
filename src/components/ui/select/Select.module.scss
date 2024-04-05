@@ -1,0 +1,92 @@
+/* reset */
+button {
+  all: unset;
+}
+
+.SelectTrigger {
+  cursor: pointer;
+
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 184px;
+  height: 34px;
+  padding: 0 12px;
+
+  font-size: 16px;
+  color: var(--color-light-100);
+
+  background-color: transparent;
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+
+  &:hover {
+    background-color: var(--color-dark-500);
+    border: 1px solid var(--color-dark-100);
+  }
+
+  // &:focus-visible {
+  //  border: 1px solid transparent;
+  //  outline: 2px solid var(--color-info-700);
+  // }
+
+  &[data-placeholder] {
+    color: var(--color-light-100);
+  }
+}
+
+.SelectIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.SelectContent {
+  position: relative;
+  top: 33px;
+
+  overflow: visible;
+
+  padding: 12px 0;
+
+  background-color: transparent;
+}
+
+.SelectViewport {
+  cursor: pointer;
+
+  position: fixed;
+
+  // top: 36px;
+
+  width: 210px;
+
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-dark-100);
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.SelectItem {
+  user-select: none;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  height: 36px;
+  padding: 0 12px;
+}
+
+.SelectItem[data-disabled] {
+  pointer-events: none;
+  color: orange;
+}
+
+.SelectItem[data-highlighted] {
+  color: var(--color-accent-300);
+  background-color: var(--color-accent-900);
+  outline: none;
+}
