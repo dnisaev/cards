@@ -13,11 +13,19 @@ export function App() {
     { label: 'Fifth value', value: 'fifth' },
   ]
 
+  const selectExampleArray = [
+    { text: 'First select value', value: 'first' },
+    { text: 'Second select value', value: 'second' },
+    { text: 'Third select value', value: 'third' },
+    { text: 'Fourth select value', value: 'fourth' },
+    { text: 'Fifth select value', value: 'fifth' },
+  ]
+
   return (
     <div>
       <hr />
       <div style={{ margin: '10px' }}>
-        <Select ariaLabel={'Select-box'} placeholder={'Select-box'} />
+        <Select ariaLabel={'Select-box'} items={selectExampleArray} placeholder={'Select-box'} />
       </div>
       <hr />
       <div style={{ margin: '10px' }}>

@@ -27,13 +27,20 @@ button {
     border: 1px solid var(--color-dark-100);
   }
 
-  // &:focus-visible {
+  //  &:focus-visible {
   //  border: 1px solid transparent;
   //  outline: 2px solid var(--color-info-700);
-  // }
+  //  }
 
   &[data-placeholder] {
     color: var(--color-light-100);
+  }
+
+  &:disabled {
+    cursor: default;
+    color: var(--color-dark-300);
+    background-color: transparent;
+    border: 1px solid var(--color-dark-300);
   }
 }
 
@@ -45,20 +52,11 @@ button {
 .SelectContent {
   position: relative;
   top: 33px;
-
-  overflow: visible;
-
-  padding: 12px 0;
-
   background-color: transparent;
 }
 
 .SelectViewport {
   cursor: pointer;
-
-  position: fixed;
-
-  // top: 36px;
 
   width: 210px;
 

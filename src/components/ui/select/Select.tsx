@@ -6,10 +6,16 @@ import classnames from 'classnames'
 
 import s from './Select.module.scss'
 
+type Item = {
+  text: string
+  value: string
+}
+
 type SelectProps = {
   ariaLabel?: string
   checked?: boolean
   disabled?: boolean
+  items: Item[]
   placeholder?: string
   title?: string
 } & ComponentPropsWithoutRef<'select'>
@@ -22,13 +28,13 @@ type SelectItemProps = {
 }
 
 export const Select = (props: SelectProps) => {
-  const { ariaLabel, disabled, placeholder } = props
+  const { ariaLabel, disabled, items, placeholder } = props
 
   return (
     <SelectRadix.Root>
-      <SelectRadix.Trigger aria-label={ariaLabel} className={s.SelectTrigger}>
+      <SelectRadix.Trigger aria-label={ariaLabel} className={s.SelectTrigger} disabled={disabled}>
         <SelectRadix.Value placeholder={placeholder} />
-        <SelectRadix.Icon className={disabled ? '' : s.SelectIcon}>
+        <SelectRadix.Icon className={s.SelectIcon}>
           <ChevronDownIcon />
           {/*<ChevronUpIcon />*/}
         </SelectRadix.Icon>
@@ -37,10 +43,11 @@ export const Select = (props: SelectProps) => {
         <SelectRadix.Content className={s.SelectContent}>
           <SelectRadix.Viewport className={s.SelectViewport}>
             <SelectRadix.Group>
-              <SelectItem value={'Select-box-1'}>Select-box 1</SelectItem>
-              <SelectItem value={'Select-box-2'}>Select-box 2</SelectItem>
-              <SelectItem value={'Select-box-3'}>Select-box 3</SelectItem>
-              <SelectItem value={'Select-box-4'}>Select-box 4</SelectItem>
+              {items.map(i => (
+                <SelectItem key={i.value} value={i.value}>
+                  {i.text}
+                </SelectItem>
+              ))}
             </SelectRadix.Group>
           </SelectRadix.Viewport>
         </SelectRadix.Content>
