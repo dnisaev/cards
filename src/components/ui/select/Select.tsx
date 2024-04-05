@@ -1,12 +1,6 @@
-import React, {
-  ComponentPropsWithoutRef,
-  Fragment,
-  ReactNode,
-  RefAttributes,
-  useState,
-} from 'react'
+import React, { ComponentPropsWithoutRef, ReactNode, RefAttributes } from 'react'
 
-import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
+import { ChevronDownIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
 import classnames from 'classnames'
 
