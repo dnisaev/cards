@@ -3,6 +3,11 @@ button {
   all: unset;
 }
 
+.selectTitle {
+  font-size: 14px;
+  color: var(--color-dark-100);
+}
+
 .SelectTrigger {
   cursor: pointer;
 
@@ -21,19 +26,20 @@ button {
   background-color: transparent;
   border: 1px solid var(--color-dark-300);
   border-radius: 2px;
+  outline: none;
 
   &:hover {
     background-color: var(--color-dark-500);
     border: 1px solid var(--color-dark-100);
   }
 
-  //  &:focus-visible {
-  //  border: 1px solid transparent;
-  //  outline: 2px solid var(--color-info-700);
-  //  }
-
   &[data-placeholder] {
     color: var(--color-light-100);
+  }
+
+  &:focus-visible {
+    border: 1px solid var(--color-info-700);
+    outline: 1px solid var(--color-info-700);
   }
 
   &:disabled {
@@ -44,6 +50,13 @@ button {
   }
 }
 
+.SelectIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 .SelectIcon svg {
   width: 16px;
   height: 16px;
@@ -51,7 +64,7 @@ button {
 
 .SelectContent {
   position: relative;
-  top: 33px;
+  top: -1px;
   background-color: transparent;
 }
 
@@ -61,7 +74,7 @@ button {
   width: 210px;
 
   background-color: var(--color-dark-900);
-  border: 1px solid var(--color-dark-100);
+  border: 1px solid var(--color-dark-300);
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 2px;
 }
@@ -76,11 +89,8 @@ button {
 
   height: 36px;
   padding: 0 12px;
-}
 
-.SelectItem[data-disabled] {
-  pointer-events: none;
-  color: orange;
+  outline: none;
 }
 
 .SelectItem[data-highlighted] {

@@ -1,4 +1,10 @@
-import React, { ComponentPropsWithoutRef, ReactNode, RefAttributes } from 'react'
+import React, {
+  ComponentPropsWithoutRef,
+  Fragment,
+  ReactNode,
+  RefAttributes,
+  useState,
+} from 'react'
 
 import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
@@ -13,12 +19,11 @@ type Item = {
 
 type SelectProps = {
   ariaLabel?: string
-  checked?: boolean
   disabled?: boolean
   items: Item[]
   placeholder?: string
   title?: string
-} & ComponentPropsWithoutRef<'select'>
+} & ComponentPropsWithoutRef<'button'>
 
 type SelectItemProps = {
   children: ReactNode
@@ -28,31 +33,34 @@ type SelectItemProps = {
 }
 
 export const Select = (props: SelectProps) => {
-  const { ariaLabel, disabled, items, placeholder } = props
+  const { ariaLabel, disabled, items, placeholder, title } = props
 
   return (
-    <SelectRadix.Root>
-      <SelectRadix.Trigger aria-label={ariaLabel} className={s.SelectTrigger} disabled={disabled}>
-        <SelectRadix.Value placeholder={placeholder} />
-        <SelectRadix.Icon className={s.SelectIcon}>
-          <ChevronDownIcon />
-          {/*<ChevronUpIcon />*/}
-        </SelectRadix.Icon>
-      </SelectRadix.Trigger>
-      <SelectRadix.Portal>
-        <SelectRadix.Content className={s.SelectContent}>
-          <SelectRadix.Viewport className={s.SelectViewport}>
-            <SelectRadix.Group>
-              {items.map(i => (
-                <SelectItem key={i.value} value={i.value}>
-                  {i.text}
-                </SelectItem>
-              ))}
-            </SelectRadix.Group>
-          </SelectRadix.Viewport>
-        </SelectRadix.Content>
-      </SelectRadix.Portal>
-    </SelectRadix.Root>
+    <>
+      <div className={s.selectTitle}>{title}</div>
+      <SelectRadix.Root>
+        <SelectRadix.Trigger aria-label={ariaLabel} className={s.SelectTrigger} disabled={disabled}>
+          <SelectRadix.Value placeholder={placeholder} />
+          <SelectRadix.Icon className={s.SelectIcon}>
+            {/*<ChevronUpIcon />*/}
+            <ChevronDownIcon />
+          </SelectRadix.Icon>
+        </SelectRadix.Trigger>
+        <SelectRadix.Portal>
+          <SelectRadix.Content className={s.SelectContent} position={'popper'}>
+            <SelectRadix.Viewport className={s.SelectViewport}>
+              <SelectRadix.Group>
+                {items.map(i => (
+                  <SelectItem key={i.value} value={i.value}>
+                    {i.text}
+                  </SelectItem>
+                ))}
+              </SelectRadix.Group>
+            </SelectRadix.Viewport>
+          </SelectRadix.Content>
+        </SelectRadix.Portal>
+      </SelectRadix.Root>
+    </>
   )
 }
 const SelectItem = React.forwardRef(

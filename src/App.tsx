@@ -25,7 +25,12 @@ export function App() {
     <div>
       <hr />
       <div style={{ margin: '10px' }}>
-        <Select ariaLabel={'Select-box'} items={selectExampleArray} placeholder={'Select-box'} />
+        <Select
+          ariaLabel={'Select-box'}
+          items={selectExampleArray}
+          placeholder={'Select-box'}
+          title={'Select-box-title'}
+        />
       </div>
       <hr />
       <div style={{ margin: '10px' }}>

@@ -6,37 +6,33 @@ const meta = {
   argTypes: {},
   component: Select,
   tags: ['autodocs'],
-  title: 'Components/RadioGroup',
+  title: 'Components/Select',
 } satisfies Meta<typeof Select>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-const radioGroupExampleArray = [
-  { label: 'First value', value: 'first' },
-  { label: 'Second value', value: 'second' },
-  { label: 'Third value', value: 'third' },
-  { label: 'Fourth value', value: 'fourth' },
-  { label: 'Fifth value', value: 'fifth' },
+const selectExampleArray = [
+  { text: 'First select value', value: 'first' },
+  { text: 'Second select value', value: 'second' },
+  { text: 'Third select value', value: 'third' },
+  { text: 'Fourth select value', value: 'fourth' },
+  { text: 'Fifth select value', value: 'fifth' },
 ]
 
-export const RadioGroupBasic: Story = {
+export const SelectBoxEnabled: Story = {
   args: {
-    options: radioGroupExampleArray,
+    items: selectExampleArray,
+    placeholder: 'Select-box',
+    title: 'Select-box-title',
   },
 }
 
-export const RadioGroupDefaultValue: Story = {
+export const SelectBoxDisabled: Story = {
   args: {
-    defaultValue: radioGroupExampleArray[1].value,
-    options: radioGroupExampleArray,
-  },
-}
-
-export const RadioGroupDisabled: Story = {
-  args: {
-    defaultValue: radioGroupExampleArray[0].value,
     disabled: true,
-    options: radioGroupExampleArray,
+    items: selectExampleArray,
+    placeholder: 'Select-box',
+    title: 'Select-box-title',
   },
 }
