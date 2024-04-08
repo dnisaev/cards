@@ -1,3 +1,4 @@
+import { LoginForm } from '@/components/auth/login-form/LoginForm'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Icon } from '@/components/ui/icon/'
@@ -24,6 +25,10 @@ export function App() {
   return (
     <div>
       <hr />
+      <div>
+        <LoginForm />
+      </div>
+      <hr />
       <div style={{ margin: '10px' }}>
         <Select
           ariaLabel={'Select-box'}
@@ -38,7 +43,14 @@ export function App() {
       </div>
       <hr />
       <div>
-        <Checkbox checked id={'c1'} title={'Check-box with title'} />
+        <Checkbox
+          id={'c1'}
+          label={'Check-box with label'}
+          name={'c1'}
+          onCheckedChange={e => {
+            console.log(e)
+          }}
+        />
       </div>
       <hr />
       <div>
