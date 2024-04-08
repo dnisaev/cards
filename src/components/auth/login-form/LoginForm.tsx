@@ -33,7 +33,7 @@ export const LoginForm = () => {
       <input {...register('email', { minLength: 8 })} style={{ margin: '12px 0' }} />
       <input {...register('password')} style={{ margin: '12px 0' }} type={'password'} />
 
-      <FormCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
+      <FormCheckbox checked control={control} label={'Remember me'} name={'rememberMe'} />
       <Button type={'submit'}>Sign in</Button>
     </form>
   )
