@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form'
 
 import { FormCheckbox } from '@/components/ui/form-checkbox/FormCheckbox'
-import { Icon } from '@/components/ui/icon'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -35,10 +34,7 @@ export const LoginForm = () => {
       <input {...register('password')} style={{ margin: '12px 0' }} type={'password'} />
 
       <FormCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
-      <Button type={'submit'}>
-        <Icon iconId={'logout'} />
-        Sign in
-      </Button>
+      <Button type={'submit'}>Sign in</Button>
     </form>
   )
 }
