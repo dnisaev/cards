@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form'
 
-import { FormCheckbox } from '@/components/ui/form-checkbox/FormCheckbox'
+import { ControlledCheckbox } from '@/components/ui/ControlledCheckbox/ControlledCheckbox'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import { Button } from '../../ui/button'
+import { Button } from '../../ui/Button'
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -33,7 +33,7 @@ export const LoginForm = () => {
       <input {...register('email', { minLength: 8 })} style={{ margin: '12px 0' }} />
       <input {...register('password')} style={{ margin: '12px 0' }} type={'password'} />
 
-      <FormCheckbox checked control={control} label={'Remember me'} name={'rememberMe'} />
+      <ControlledCheckbox checked control={control} label={'Remember me'} name={'rememberMe'} />
       <Button type={'submit'}>Sign in</Button>
     </form>
   )
