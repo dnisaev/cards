@@ -1,9 +1,9 @@
 import { LoginForm } from '@/components/auth/login-form/LoginForm'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Icon } from '@/components/ui/icon/'
-import { RadioGroup } from '@/components/ui/radiogroup'
-import { Select } from '@/components/ui/select'
+import { Icon } from '@/components/ui/Icon/'
+import { Button } from 'components/ui/Button'
+import { Checkbox } from 'components/ui/Checkbox'
+import { RadioGroup } from 'components/ui/RadioGroup'
+import { Select } from 'components/ui/Select'
 
 export function App() {
   const radioGroupExampleArray = [
