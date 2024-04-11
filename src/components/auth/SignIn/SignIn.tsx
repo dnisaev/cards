@@ -39,9 +39,18 @@ export const SignIn = () => {
         <Input label={'Password'} {...register('password')} type={'password'} />
 
         <ControlledCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
+        <Typography style={{ textAlign: 'right' }} variant={'body2'}>
+          Forgot password?
+        </Typography>
         <Button fullWidth type={'submit'}>
           Sign in
         </Button>
+        <Typography style={{ textAlign: 'center' }} variant={'body2'}>
+          Don`t have an account?
+        </Typography>
+        <Typography style={{ textAlign: 'center' }} variant={'link1'}>
+          Sign Up
+        </Typography>
       </form>
     </Card>
   )

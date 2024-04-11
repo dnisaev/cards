@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, ForwardRefRenderFunction, forwardRef } from 'react'
 
+import { Typography } from '@/components/ui/Typography'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import { CheckIcon } from '@radix-ui/react-icons'
 
@@ -46,10 +47,10 @@ const CheckboxComponent: ForwardRefRenderFunction<
             <CheckIcon />
           </CheckboxRadix.Indicator>
         </CheckboxRadix.Root>
-        <label className={disabled ? s.labelDisabled : ''} htmlFor={name}>
+        <Typography className={disabled ? s.labelDisabled : ''} htmlFor={name} variant={'body2'}>
           {label}
-        </label>
-        {errorMessage && <h3>{errorMessage}</h3>}
+        </Typography>
+        {errorMessage && <Typography variant={'caption'}>{errorMessage}</Typography>}
       </div>
     </form>
   )
