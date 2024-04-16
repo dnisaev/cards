@@ -35,7 +35,11 @@ export function App() {
   return (
     <div>
       <div>
-        <Tabs tabs={tabsExampleArray}>
+        <Tabs
+          defaultValue={'checkbox'}
+          tabs={tabsExampleArray}
+          tabsTitle={'Example title for Tabs'}
+        >
           <TabContent value={'sign-in'}>
             <Card>
               <SignIn />
