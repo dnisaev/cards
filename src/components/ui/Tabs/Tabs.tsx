@@ -4,7 +4,7 @@ import { Typography } from '@/components/ui/Typography'
 import * as TabsRadixUI from '@radix-ui/react-tabs'
 import { clsx } from 'clsx'
 
-import s from './Tabs.module.css'
+import s from './Tabs.module.scss'
 
 type TabType = {
   disabled?: boolean
