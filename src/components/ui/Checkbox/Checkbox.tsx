@@ -47,7 +47,12 @@ const CheckboxComponent: ForwardRefRenderFunction<
             <CheckIcon />
           </CheckboxRadix.Indicator>
         </CheckboxRadix.Root>
-        <Typography className={disabled ? s.labelDisabled : ''} htmlFor={name} variant={'body2'}>
+        <Typography
+          as={'label'}
+          className={disabled ? s.labelDisabled : ''}
+          htmlFor={name}
+          variant={'body2'}
+        >
           {label}
         </Typography>
         {errorMessage && <Typography variant={'caption'}>{errorMessage}</Typography>}

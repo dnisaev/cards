@@ -1,76 +1,61 @@
-import { FC, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
+import { Typography } from '@/components/ui/Typography'
 import * as TabsRadixUI from '@radix-ui/react-tabs'
 import { clsx } from 'clsx'
 
 import s from './Tabs.module.css'
 
-export type TabType = {
+type TabType = {
   disabled?: boolean
   title: string
-  /** A unique value that associates the trigger with a content. */
   value: string
 }
 
-type CommonProps = {
-  /** Use TabsContent components as children. */
+type TabsProps = {
   children?: ReactNode
-  /** The value of the tab that should be active when initially rendered. Use when you do not need to control the state of the tabs. */
   defaultValue?: string
-  /** Event handler called when the value changes.  */
   onValueChange?: (value: string) => void
-  /** An array of objects with the value and title of the tab.
-   *  {value: string, title: string}
-   * */
   tabs: TabType[]
-  /** The controlled value of the tab to activate. Should be used in conjunction with onValueChange */
+  tabsTitle?: string
   value?: string
-  variant?: 'primary' | 'secondary'
-}
+} & ComponentPropsWithoutRef<typeof TabsRadixUI.Root>
 
-type ConditionalProps =
-  | {
-      fullWidth?: boolean
-      variant?: 'primary'
-    }
-  | {
-      fullWidth?: never
-      variant?: 'secondary'
-    }
-
-export type TabsProps = CommonProps & ConditionalProps
-
-export const Tabs: FC<TabsProps> = ({
-  children,
-  defaultValue,
-  fullWidth,
-  onValueChange,
-  tabs,
-  value,
-  variant = 'primary',
-}) => {
+export const Tabs = ({ children, className, defaultValue, tabs, tabsTitle, value }: TabsProps) => {
   const classNames = {
-    list: clsx(s.list, s[variant]),
-    root: s.root,
-    trigger: clsx(s.trigger, fullWidth && s.fullWidth, s[variant]),
+    list: s.list,
+    root: clsx(s.root, className),
+    title: s.title,
+    triggerFirst: clsx(s.trigger, s.first),
+    triggerLast: clsx(s.trigger, s.last),
+    triggerMiddle: clsx(s.trigger, s.middle),
+  }
+
+  const definingBorders = (key: number, array: TabType[]) => {
+    if (key === 0) {
+      return classNames.triggerFirst
+    }
+    if (key === array.length - 1) {
+      return classNames.triggerLast
+    }
+
+    return classNames.triggerMiddle
   }
 
   return (
-    <TabsRadixUI.Root
-      className={classNames.root}
-      defaultValue={defaultValue}
-      onValueChange={onValueChange}
-      value={value}
-    >
+    <TabsRadixUI.Root className={classNames.root} defaultValue={defaultValue} value={value}>
+      <Typography className={classNames.title} variant={'body2'}>
+        {tabsTitle}
+      </Typography>
       <TabsRadixUI.List className={classNames.list}>
-        {tabs.map(tab => (
+        {tabs.map((tab, key) => (
           <TabsRadixUI.Trigger
-            className={classNames.trigger}
+            className={definingBorders(key, tabs)}
             disabled={tab.disabled}
             key={tab.value}
             value={tab.value}
           >
-            {tab.title}
+            <Typography variant={'body1'}>{tab.title}</Typography>
           </TabsRadixUI.Trigger>
         ))}
       </TabsRadixUI.List>
@@ -84,7 +69,7 @@ export type TabContentProps = {
   value: string
 }
 
-export const TabContent: FC<TabContentProps> = ({ children, value }) => {
+export const TabContent = ({ children, value }: TabContentProps) => {
   return (
     <TabsRadixUI.Content className={s.content} value={value}>
       {children}
