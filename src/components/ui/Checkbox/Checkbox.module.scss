@@ -4,6 +4,8 @@ button {
 }
 
 .checkboxRoot {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,8 +14,6 @@ button {
   height: 15px;
   margin: 12px 0;
 
-  font-family: inherit;
-
   border: 3px solid var(--color-light-900);
   border-radius: 4px;
 
@@ -21,7 +21,7 @@ button {
     content: '';
 
     position: absolute;
-    z-index: -1;
+    z-index: 1;
 
     display: none;
 
@@ -36,6 +36,7 @@ button {
     background-color: var(--color-dark-500);
 
     &::before {
+      z-index: -1;
       display: inline-block;
       background-color: var(--color-dark-500);
     }
