@@ -110,7 +110,7 @@ export const AppPresent = () => {
   return (
     <div>
       <div>
-        <Tabs defaultValue={'select'} tabs={tabsExampleArray} tabsTitle={'Example title for Tabs'}>
+        <Tabs defaultValue={'sign-in'} tabs={tabsExampleArray} tabsTitle={'Example title for Tabs'}>
           {componentsExampleArray.map(c => {
             return (
               <TabContent key={c.value} value={c.value}>

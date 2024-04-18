@@ -28,7 +28,7 @@ const CheckboxComponent: ForwardRefRenderFunction<
 
   return (
     <form>
-      <div style={{ alignItems: 'center', display: 'flex' }}>
+      <div className={s.root}>
         <CheckboxRadix.Root
           className={disabled ? `${s.checkboxRoot} ${s.borderDisabled}` : s.checkboxRoot}
           defaultChecked={checked}
@@ -49,7 +49,7 @@ const CheckboxComponent: ForwardRefRenderFunction<
         </CheckboxRadix.Root>
         <Typography
           as={'label'}
-          className={disabled ? s.labelDisabled : ''}
+          className={disabled ? `${s.label} ${s.labelDisabled}` : s.label}
           htmlFor={name}
           variant={'body2'}
         >

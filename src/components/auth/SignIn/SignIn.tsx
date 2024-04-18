@@ -29,26 +29,29 @@ export const SignIn = () => {
   }
 
   return (
-    <Card className={s.root}>
-      <Typography style={{ textAlign: 'center' }} variant={'h1'}>
-        Sign in
+    <Card className={s.card}>
+      <Typography as={'h1'} className={s.h1} variant={'h1'}>
+        Sign In
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/*<DevTool control={control} />*/}
         <Input label={'Email'} {...register('email', { minLength: 8 })} />
-        <Input label={'Password'} {...register('password')} type={'password'} />
-
+        <Input className={s.input} label={'Password'} {...register('password')} type={'password'} />
         <ControlledCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
-        <Typography style={{ textAlign: 'right' }} variant={'body2'}>
-          Forgot password?
-        </Typography>
+        <div className={s.forgotLink}>
+          <Typography as={'a'} href={'/forgot'} variant={'body2'}>
+            Forgot password?
+          </Typography>
+        </div>
         <Button fullWidth type={'submit'}>
-          Sign in
+          <Typography as={'span'} variant={'subtitle2'}>
+            Sign in
+          </Typography>
         </Button>
-        <Typography style={{ textAlign: 'center' }} variant={'body2'}>
+        <Typography className={s.account} variant={'body2'}>
           Don`t have an account?
         </Typography>
-        <Typography style={{ textAlign: 'center' }} variant={'link1'}>
+        <Typography as={'a'} className={s.signupLink} href={'/signup'} variant={'body2'}>
           Sign Up
         </Typography>
       </form>

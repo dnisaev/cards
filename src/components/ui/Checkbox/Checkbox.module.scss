@@ -3,7 +3,14 @@ button {
   all: unset;
 }
 
+.root {
+  display: flex;
+  align-items: center;
+}
+
 .checkboxRoot {
+  all: unset;
+
   position: relative;
 
   display: flex;
@@ -12,7 +19,7 @@ button {
 
   width: 15px;
   height: 15px;
-  margin: 12px 0;
+  margin: 9px 0;
 
   border: 3px solid var(--color-light-900);
   border-radius: 4px;
@@ -92,12 +99,12 @@ button {
   background-color: var(--color-dark-100);
 }
 
-svg {
+.checkboxIndicator svg {
   width: 21px;
   height: 21px;
 }
 
-label {
+.label {
   margin-left: 11px;
 
   &:hover {
