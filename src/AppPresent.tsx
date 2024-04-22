@@ -6,6 +6,7 @@ import { Icon } from '@/components/ui/Icon/'
 import { RadioGroup } from '@/components/ui/RadioGroup'
 import { Select } from '@/components/ui/Select'
 import { TabContent, Tabs } from '@/components/ui/Tabs/Tabs'
+import { Decks } from '@/pages/decks'
 
 export const AppPresent = () => {
   const radioGroupExampleArray = [
@@ -29,8 +30,10 @@ export const AppPresent = () => {
     { disabled: false, title: 'Checkbox', value: 'checkbox' },
     { disabled: false, title: 'Button', value: 'button' },
     { disabled: true, title: 'Disabled', value: 'disabled' },
+    { disabled: false, title: 'Decks', value: 'decks' },
   ]
   const componentsExampleArray = [
+    { component: <Decks />, value: 'decks' },
     { component: <SignIn />, value: 'sign-in' },
     { component: <RadioGroup options={radioGroupExampleArray} />, value: 'radio-group' },
     {
@@ -110,7 +113,7 @@ export const AppPresent = () => {
   return (
     <div>
       <div>
-        <Tabs defaultValue={'sign-in'} tabs={tabsExampleArray} tabsTitle={'Example title for Tabs'}>
+        <Tabs defaultValue={'decks'} tabs={tabsExampleArray} tabsTitle={'Example title for Tabs'}>
           {componentsExampleArray.map(c => {
             return (
               <TabContent key={c.value} value={c.value}>
