@@ -26,7 +26,7 @@ const privateRoutes: RouteObject[] = [
 export const Router = () => {
   const result = useGetDecksQuery()
 
-  // console.log(result)
+  console.log(result)
 
   return <RouterProvider router={router} />
 }
