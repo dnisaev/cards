@@ -18,11 +18,14 @@ export const Decks = () => {
     currentPage,
     name: search,
   })
+  const [deckId, setDeckId] = useState<string>('')
 
-  // console.log('data', data)
-  // console.log('rest', rest)
+  console.log('data', data)
+  console.log('rest', rest)
   const [createDeck, { isLoading: isDeckBeingCreated }] = useCreateDeckMutation()
-  const [deleteDeck] = useDeleteDeckMutation()
+  const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
+
+  console.log(isDeckBeingDeleted)
 
   if (isLoading) {
     return <h1>LOADING...</h1>
@@ -36,7 +39,7 @@ export const Decks = () => {
     name: deck.name,
   }))
 
-  // console.log('mappedData', mappedData)
+  console.log('mappedData', mappedData)
 
   const paginationOptions = []
 
@@ -48,7 +51,7 @@ export const Decks = () => {
     <div>
       <form
         onSubmit={handleSubmit(data => {
-          createDeck({ isPrivate: true, name: 'invalidatesTags2' } as any)
+          createDeck({ isPrivate: data.isPrivate, name: 'test_2024' } as any)
         })}
         style={{ marginBottom: '40px' }}
       >
@@ -69,7 +72,16 @@ export const Decks = () => {
           <Fragment key={deck.id}>
             <div>Author: {deck.author.name}</div>
             <div>Deck: {deck.name}</div>
-            <Button onClick={() => deleteDeck({ id: deck.id })}>Delete Deck</Button>
+            <div>Private: {deck.isPrivate ? 'Yes' : 'No'}</div>
+            <Button
+              disabled={deckId === deck.id && isDeckBeingDeleted}
+              onClick={() => {
+                deleteDeck({ id: deck.id })
+                setDeckId(deck.id)
+              }}
+            >
+              Delete Deck
+            </Button>
             <hr />
           </Fragment>
         )
