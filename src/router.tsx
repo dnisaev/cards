@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 
 import { AppPresent } from '@/AppPresent'
-import { useGetDecksQuery } from '@/services/baseApi'
+import { useGetDecksQuery } from '@/services/decks/decks.service'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -26,7 +26,7 @@ const privateRoutes: RouteObject[] = [
 export const Router = () => {
   const result = useGetDecksQuery()
 
-  console.log(result)
+  // console.log(result)
 
   return <RouterProvider router={router} />
 }
