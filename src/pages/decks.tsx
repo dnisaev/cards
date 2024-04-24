@@ -8,7 +8,8 @@ import {
   useCreateDeckMutation,
   useDeleteDeckMutation,
   useGetDecksQuery,
-} from '@/services/decks/decks.service'
+  // useUpdateDeckMutation,
+} from '@/services/decks/decksService'
 
 export const Decks = () => {
   const { control, handleSubmit } = useForm()
@@ -24,6 +25,7 @@ export const Decks = () => {
   console.log('rest', rest)
   const [createDeck, { isLoading: isDeckBeingCreated }] = useCreateDeckMutation()
   const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
+  // const [updateDeck, { isLoading: isDeckBeingUpdated }] = useUpdateDeckMutation()
 
   console.log(isDeckBeingDeleted)
 
@@ -81,6 +83,15 @@ export const Decks = () => {
               }}
             >
               Delete Deck
+            </Button>
+            <Button
+              // disabled={deckId === deck.id && isDeckBeingUpdated}
+              onClick={() => {
+                // updateDeck({ id: deck.id, ...deck })
+                setDeckId(deck.id)
+              }}
+            >
+              Update Deck
             </Button>
             <hr />
           </Fragment>
