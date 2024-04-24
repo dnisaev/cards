@@ -2,8 +2,10 @@ import { baseApi } from '@/services/baseApi'
 import {
   CreateDeckArgs,
   DeleteDeckArgs,
+  GetDeckResponse,
   GetDecksArgs,
   GetDecksResponse,
+  UpdateDeckArgs,
 } from '@/services/decks/types'
 
 export const decksService = baseApi.injectEndpoints({
@@ -32,8 +34,21 @@ export const decksService = baseApi.injectEndpoints({
           url: `v2/decks`,
         }),
       }),
+      updateDeck: builder.mutation<GetDeckResponse, UpdateDeckArgs>({
+        invalidatesTags: ['Decks'],
+        query: (id, ...body) => ({
+          body,
+          method: 'PATCH',
+          url: `v1/decks/${id}`,
+        }),
+      }),
     }
   },
 })
 
-export const { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } = decksService
+export const {
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+  useGetDecksQuery,
+  useUpdateDeckMutation,
+} = decksService
