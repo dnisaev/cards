@@ -2,8 +2,8 @@ import { Fragment, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/Button'
-import { ControlledCheckbox } from '@/components/ui/ControlledCheckbox/ControlledCheckbox'
 import { Input } from '@/components/ui/Input'
+import { ControlledCheckbox } from '@/components/ui/controlled/ControlledCheckbox/ControlledCheckbox'
 import {
   useCreateDeckMutation,
   useDeleteDeckMutation,
