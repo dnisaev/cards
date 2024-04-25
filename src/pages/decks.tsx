@@ -4,44 +4,39 @@ import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { ControlledCheckbox } from '@/components/ui/controlled/ControlledCheckbox/ControlledCheckbox'
+import { ControlledInput } from '@/components/ui/controlled/ControlledInput'
 import {
   useCreateDeckMutation,
   useDeleteDeckMutation,
   useGetDecksQuery,
-  // useUpdateDeckMutation,
+  useUpdateDeckMutation,
 } from '@/services/decks/decksService'
 
 export const Decks = () => {
   const { control, handleSubmit } = useForm()
   const [search, setSearch] = useState<string>('')
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const { data, isLoading, ...rest } = useGetDecksQuery({
+  const { data, isLoading } = useGetDecksQuery({
     currentPage,
     name: search,
   })
   const [deckId, setDeckId] = useState<string>('')
 
-  console.log('data', data)
-  console.log('rest', rest)
   const [createDeck, { isLoading: isDeckBeingCreated }] = useCreateDeckMutation()
   const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
-  // const [updateDeck, { isLoading: isDeckBeingUpdated }] = useUpdateDeckMutation()
-
-  console.log(isDeckBeingDeleted)
+  const [updateDeck, { isLoading: isDeckBeingUpdated }] = useUpdateDeckMutation()
 
   if (isLoading) {
     return <h1>LOADING...</h1>
   }
 
-  const mappedData = data?.items.map(deck => ({
-    cards: deck.cardsCount,
-    createdBy: deck.author.name,
-    id: deck.id,
-    lastUpdated: deck.updated,
-    name: deck.name,
-  }))
-
-  console.log('mappedData', mappedData)
+  // const mappedData = data?.items.map(deck => ({
+  //   cards: deck.cardsCount,
+  //   createdBy: deck.author.name,
+  //   id: deck.id,
+  //   lastUpdated: deck.updated,
+  //   name: deck.name,
+  // }))
 
   const paginationOptions = []
 
@@ -53,17 +48,17 @@ export const Decks = () => {
     <div>
       <form
         onSubmit={handleSubmit(data => {
-          createDeck({ isPrivate: data.isPrivate, name: 'test_2024' } as any)
+          createDeck(data as any)
         })}
         style={{ marginBottom: '40px' }}
       >
-        <Input label={'Create Deck'} />
-        <ControlledCheckbox control={control} label={'Private deck'} name={'isPrivate'} />
+        <ControlledInput control={control} label={'Create deck'} name={'name'} />
+        <ControlledCheckbox control={control} label={'Private'} name={'isPrivate'} />
         <Button disabled={isDeckBeingCreated}>Create Deck</Button>
       </form>
       <hr />
       <Input
-        label={'Search decks name'}
+        label={'Search deck'}
         onChange={e => setSearch(e.target.value)}
         style={{ marginBottom: '40px' }}
         value={search}
@@ -85,10 +80,11 @@ export const Decks = () => {
               Delete Deck
             </Button>
             <Button
-              // disabled={deckId === deck.id && isDeckBeingUpdated}
+              disabled={deckId === deck.id && isDeckBeingUpdated}
               onClick={() => {
-                // updateDeck({ id: deck.id, ...deck })
+                updateDeck(deck.id)
                 setDeckId(deck.id)
+                console.log(deck.id)
               }}
             >
               Update Deck
