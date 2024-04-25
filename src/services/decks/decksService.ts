@@ -6,6 +6,7 @@ import {
   GetDecksArgs,
   GetDecksResponse,
   UpdateDeckArgs,
+  UpdateDeckRequest,
 } from '@/services/decks/types'
 
 export const decksService = baseApi.injectEndpoints({
@@ -36,6 +37,25 @@ export const decksService = baseApi.injectEndpoints({
       }),
       updateDeck: builder.mutation<GetDeckResponse, UpdateDeckArgs>({
         invalidatesTags: ['Decks'],
+        // async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
+        //   const patchResult = dispatch(
+        //     decksService.util.updateQueryData('getDecks', { currentPage: 1, name: '' }, draft => {
+        //       const itemToUpdate = draft.items.find(deck => deck.id === id)
+        //
+        //       if (!itemToUpdate) {
+        //         return
+        //       }
+        //
+        //       Object.assign(itemToUpdate, patch)
+        //     })
+        //   )
+        //
+        //   try {
+        //     await queryFulfilled
+        //   } catch {
+        //     patchResult.undo()
+        //   }
+        // },
         query: (id, ...body) => ({
           body,
           method: 'PATCH',
