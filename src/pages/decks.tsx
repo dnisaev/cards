@@ -73,8 +73,8 @@ export const Decks = () => {
             <Button
               disabled={deckId === deck.id && isDeckBeingDeleted}
               onClick={() => {
-                deleteDeck({ id: deck.id })
                 setDeckId(deck.id)
+                deleteDeck({ id: deck.id })
               }}
             >
               Delete Deck
@@ -82,9 +82,10 @@ export const Decks = () => {
             <Button
               disabled={deckId === deck.id && isDeckBeingUpdated}
               onClick={() => {
-                updateDeck(deck.id)
+                const newDeck = { isPrivate: false, name: 'test-edited' }
+
                 setDeckId(deck.id)
-                console.log(deck.id)
+                updateDeck({ id: deck.id, ...newDeck })
               }}
             >
               Update Deck

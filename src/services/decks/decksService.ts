@@ -2,12 +2,30 @@ import { baseApi } from '@/services/baseApi'
 import {
   CreateDeckArgs,
   DeleteDeckArgs,
-  GetDeckResponse,
   GetDecksArgs,
   GetDecksResponse,
-  UpdateDeckArgs,
-  UpdateDeckRequest,
 } from '@/services/decks/types'
+
+type UpdateDeckRequest = {
+  cover?: null | string
+  isPrivate?: boolean
+  name?: string
+}
+
+type UpdateDeckResponse = {
+  author: {
+    id: string
+    name: string
+  }
+  cardsCount: number
+  cover: null | string
+  created: string
+  id: string
+  isPrivate: boolean
+  name: string
+  updated: string
+  userId: string
+}
 
 export const decksService = baseApi.injectEndpoints({
   endpoints: builder => {
@@ -35,28 +53,31 @@ export const decksService = baseApi.injectEndpoints({
           url: `v2/decks`,
         }),
       }),
-      updateDeck: builder.mutation<GetDeckResponse, UpdateDeckArgs>({
+      updateDeck: builder.mutation<
+        UpdateDeckResponse,
+        Pick<UpdateDeckResponse, 'id'> & Partial<UpdateDeckRequest>
+      >({
         invalidatesTags: ['Decks'],
-        // async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
-        //   const patchResult = dispatch(
-        //     decksService.util.updateQueryData('getDecks', { currentPage: 1, name: '' }, draft => {
-        //       const itemToUpdate = draft.items.find(deck => deck.id === id)
-        //
-        //       if (!itemToUpdate) {
-        //         return
-        //       }
-        //
-        //       Object.assign(itemToUpdate, patch)
-        //     })
-        //   )
-        //
-        //   try {
-        //     await queryFulfilled
-        //   } catch {
-        //     patchResult.undo()
-        //   }
-        // },
-        query: (id, ...body) => ({
+        async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
+          const patchResult = dispatch(
+            decksService.util.updateQueryData('getDecks', { currentPage: 1, name: '' }, draft => {
+              const itemToUpdate = draft.items.find(deck => deck.id === id)
+
+              if (!itemToUpdate) {
+                return
+              }
+
+              Object.assign(itemToUpdate, patch)
+            })
+          )
+
+          try {
+            await queryFulfilled
+          } catch {
+            patchResult.undo()
+          }
+        },
+        query: ({ id, ...body }) => ({
           body,
           method: 'PATCH',
           url: `v1/decks/${id}`,
