@@ -5,6 +5,9 @@ import {
   GetDecksArgs,
   GetDecksResponse,
 } from '@/services/decks/types'
+// eslint-disable-next-line import/no-unresolved
+// @ts-ignore
+import { PatchCollection } from '@reduxjs/toolkit/dist/query/core/buildThunks'
 
 type UpdateDeckRequest = {
   cover?: null | string
@@ -58,23 +61,35 @@ export const decksService = baseApi.injectEndpoints({
         Pick<UpdateDeckResponse, 'id'> & Partial<UpdateDeckRequest>
       >({
         invalidatesTags: ['Decks'],
-        async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
-          const patchResult = dispatch(
-            decksService.util.updateQueryData('getDecks', { currentPage: 1, name: '' }, draft => {
-              const itemToUpdate = draft.items.find(deck => deck.id === id)
+        async onQueryStarted({ id, ...patch }, { dispatch, getState, queryFulfilled }) {
+          const patchResults: PatchCollection[] = []
 
-              if (!itemToUpdate) {
+          decksService.util
+            .selectInvalidatedBy(getState(), ['Decks'])
+            .forEach(({ endpointName, originalArgs }) => {
+              if (endpointName !== 'getDecks') {
                 return
-              }
+              } else {
+                patchResults.push(
+                  dispatch(
+                    decksService.util.updateQueryData(endpointName, originalArgs, draft => {
+                      const itemToUpdate = draft.items.find(deck => deck.id === id)
 
-              Object.assign(itemToUpdate, patch)
+                      if (!itemToUpdate) {
+                        return
+                      }
+
+                      Object.assign(itemToUpdate, patch)
+                    })
+                  )
+                )
+              }
             })
-          )
 
           try {
             await queryFulfilled
           } catch {
-            patchResult.undo()
+            patchResults.forEach(patch => patch.undo())
           }
         },
         query: ({ id, ...body }) => ({
