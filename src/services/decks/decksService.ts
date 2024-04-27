@@ -33,8 +33,29 @@ type UpdateDeckResponse = {
 export const decksService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createDeck: builder.mutation<void, CreateDeckArgs>({
+      createDeck: builder.mutation<UpdateDeckResponse, CreateDeckArgs>({
         invalidatesTags: ['Decks'],
+        async onQueryStarted(_, { dispatch, getState, queryFulfilled }) {
+          try {
+            const result = await queryFulfilled
+
+            decksService.util
+              .selectInvalidatedBy(getState(), ['Decks'])
+              .forEach(({ endpointName, originalArgs }) => {
+                if (endpointName !== 'getDecks') {
+                  return
+                } else {
+                  dispatch(
+                    decksService.util.updateQueryData(endpointName, originalArgs, draft => {
+                      draft.items.unshift(result.data)
+                    })
+                  )
+                }
+              })
+          } catch {
+            /* empty */
+          }
+        },
         query: args => ({
           body: args,
           method: 'POST',
