@@ -2,39 +2,62 @@ import { baseApi } from '@/services/baseApi'
 import {
   CreateDeckArgs,
   DeleteDeckArgs,
+  GetDeckResponse,
   GetDecksArgs,
   GetDecksResponse,
+  UpdateDeckArgs,
 } from '@/services/decks/types'
-// eslint-disable-next-line import/no-unresolved
 // @ts-ignore
+// eslint-disable-next-line import/no-unresolved
 import { PatchCollection } from '@reduxjs/toolkit/dist/query/core/buildThunks'
 
-type UpdateDeckRequest = {
-  cover?: null | string
-  isPrivate?: boolean
-  name?: string
-}
+// type UpdateDeckRequest = {
+//   cover?: null | string
+//   isPrivate?: boolean
+//   name?: string
+// }
 
-type UpdateDeckResponse = {
-  author: {
-    id: string
-    name: string
-  }
-  cardsCount: number
-  cover: null | string
-  created: string
-  id: string
-  isPrivate: boolean
-  name: string
-  updated: string
-  userId: string
-}
+// type UpdateDeckResponse = {
+//   author: {
+//     id: string
+//     name: string
+//   }
+//   cardsCount: number
+//   cover: null | string
+//   created: string
+//   id: string
+//   isPrivate: boolean
+//   name: string
+//   updated: string
+//   userId: string
+// }
 
 export const decksService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createDeck: builder.mutation<void, CreateDeckArgs>({
+      createDeck: builder.mutation<GetDeckResponse, CreateDeckArgs>({
         invalidatesTags: ['Decks'],
+        async onQueryStarted(_, { dispatch, getState, queryFulfilled }) {
+          try {
+            const result = await queryFulfilled
+
+            decksService.util
+              .selectInvalidatedBy(getState(), ['Decks'])
+              .forEach(({ endpointName, originalArgs }) => {
+                if (endpointName !== 'getDecks') {
+                  return
+                } else {
+                  dispatch(
+                    decksService.util.updateQueryData(endpointName, originalArgs, draft => {
+                      draft.items.unshift(result.data)
+                    })
+                  )
+                }
+              })
+          } catch {
+            /* empty */
+          }
+        },
         query: args => ({
           body: args,
           method: 'POST',
@@ -56,10 +79,7 @@ export const decksService = baseApi.injectEndpoints({
           url: `v2/decks`,
         }),
       }),
-      updateDeck: builder.mutation<
-        UpdateDeckResponse,
-        Pick<UpdateDeckResponse, 'id'> & Partial<UpdateDeckRequest>
-      >({
+      updateDeck: builder.mutation<GetDeckResponse, UpdateDeckArgs>({
         invalidatesTags: ['Decks'],
         async onQueryStarted({ id, ...patch }, { dispatch, getState, queryFulfilled }) {
           const patchResults: PatchCollection[] = []
