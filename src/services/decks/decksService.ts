@@ -5,8 +5,8 @@ import {
   GetDecksArgs,
   GetDecksResponse,
 } from '@/services/decks/types'
-// eslint-disable-next-line import/no-unresolved
 // @ts-ignore
+// eslint-disable-next-line import/no-unresolved
 import { PatchCollection } from '@reduxjs/toolkit/dist/query/core/buildThunks'
 
 type UpdateDeckRequest = {
