@@ -1,7 +1,5 @@
-import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query'
-
 import { router } from '@/router'
-import { fetchBaseQuery } from '@reduxjs/toolkit/query'
+import { BaseQueryFn, FetchArgs, FetchBaseQueryError, fetchBaseQuery } from '@reduxjs/toolkit/query'
 import { Mutex } from 'async-mutex'
 
 // create a new mutex
@@ -9,6 +7,9 @@ const mutex = new Mutex()
 const baseQuery = fetchBaseQuery({
   baseUrl: 'https://api.flashcards.andrii.es',
   credentials: 'include',
+  prepareHeaders: headers => {
+    headers.append('x-auth-skip', 'true')
+  },
 })
 
 export const baseQueryWithReauth: BaseQueryFn<
