@@ -8,6 +8,7 @@ const baseQuery = fetchBaseQuery({
   baseUrl: 'https://api.flashcards.andrii.es',
   credentials: 'include',
   prepareHeaders: headers => {
+    // todo: нужно удалить, когда будет готова авторизация
     headers.append('x-auth-skip', 'true')
   },
 })
