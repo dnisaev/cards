@@ -35,7 +35,7 @@ export const SignIn = () => {
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/*<DevTool control={control} />*/}
-        <Input label={'Email'} {...register('email', { minLength: 8 })} />
+        <Input className={s.input} label={'Email'} {...register('email', { minLength: 8 })} />
         <Input className={s.input} label={'Password'} {...register('password')} type={'password'} />
         <ControlledCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
         <div className={s.forgotLink}>
