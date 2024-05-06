@@ -1,12 +1,15 @@
 .root {
   display: flex;
   flex-direction: column;
-  width: 100%;
 
-  .label {
+  .inputLabel {
     margin-bottom: 1px;
     color: var(--color-dark-100);
-    text-align: left;
+
+    &.disabled {
+      color: var(--color-dark-300);
+      cursor: unset;
+    }
   }
 
   .container {
@@ -18,10 +21,6 @@
       top: 8px;
       left: 12px;
       color: var(--color-light-100);
-
-      &:disabled {
-        color: var(--color-dark-300);
-      }
     }
 
     .input {
@@ -35,7 +34,6 @@
       font-weight: var(--font-weight-regular);
       line-height: var(--line-height-m);
       color: var(--color-light-100);
-      text-align: left;
 
       background-color: transparent;
       border: 1px solid var(--color-dark-100);
@@ -55,13 +53,7 @@
         color: var(--color-dark-300);
       }
 
-      &:hover:enabled {
-        cursor: text;
-        background-color: var(--color-dark-700);
-        border-color: var(--color-dark-100);
-      }
-
-      &:focus:enabled {
+      &:focus-visible {
         border: 1px solid var(--color-info-700);
       }
 
@@ -94,6 +86,14 @@
       &:disabled {
         cursor: unset;
         color: var(--color-dark-300);
+      }
+
+      &:focus-visible {
+        border: 1px solid var(--color-info-700);
+      }
+
+      span {
+        align-items: center;
       }
     }
   }
