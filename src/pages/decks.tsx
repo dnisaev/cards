@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/Button'
+import { Card } from '@/components/ui/Card'
 import { Input } from '@/components/ui/Input'
 import { ControlledCheckbox } from '@/components/ui/controlled/ControlledCheckbox/ControlledCheckbox'
 import { ControlledInput } from '@/components/ui/controlled/ControlledInput'
@@ -45,16 +46,21 @@ export const Decks = () => {
   }
 
   return (
-    <div>
+    <Card>
       <form
         onSubmit={handleSubmit(data => {
           createDeck(data as any)
         })}
         style={{ marginBottom: '40px' }}
       >
-        <ControlledInput control={control} label={'Create deck'} name={'name'} />
+        <ControlledInput
+          control={control}
+          label={'Create deck'}
+          name={'name'}
+          style={{ marginBottom: '10px' }}
+        />
         <ControlledCheckbox control={control} label={'Private'} name={'isPrivate'} />
-        <Button disabled={isDeckBeingCreated}>Create Deck</Button>
+        <Button disabled={isDeckBeingCreated}>Add new deck</Button>
       </form>
       <hr />
       <Input
@@ -107,6 +113,6 @@ export const Decks = () => {
           )
         })}
       </div>
-    </div>
+    </Card>
   )
 }
