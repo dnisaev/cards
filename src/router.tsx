@@ -7,11 +7,12 @@ import {
 } from 'react-router-dom'
 
 import { AppPresent } from '@/AppPresent'
-// import { useGetDecksQuery } from '@/services/decks/decksService'
+import { SignIn } from '@/components/auth/SignIn'
+import { useGetDecksQuery } from '@/services/decks/decksService'
 
 const publicRoutes: RouteObject[] = [
   {
-    element: <div>login</div>,
+    element: <SignIn />,
     path: '/login',
   },
 ]
@@ -24,9 +25,9 @@ const privateRoutes: RouteObject[] = [
 ]
 
 export const Router = () => {
-  // const result = useGetDecksQuery()
+  const result = useGetDecksQuery()
 
-  // console.log(result)
+  console.log(result)
 
   return <RouterProvider router={router} />
 }
