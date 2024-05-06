@@ -13,7 +13,15 @@ import { useGetDecksQuery } from '@/services/decks/decksService'
 const publicRoutes: RouteObject[] = [
   {
     element: <SignIn />,
-    path: '/login',
+    path: '/sign-in',
+  },
+  {
+    element: <div>Sign Up</div>,
+    path: '/sign-up',
+  },
+  {
+    element: <div>Forgot your password?</div>,
+    path: '/recover-password',
   },
 ]
 
@@ -35,7 +43,7 @@ export const Router = () => {
 function PrivateRoutes() {
   const isAuthenticated = true
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
+  return isAuthenticated ? <Outlet /> : <Navigate to={'/sign-in'} />
 }
 
 export const router = createBrowserRouter([
