@@ -11,27 +11,6 @@ import {
 // eslint-disable-next-line import/no-unresolved
 import { PatchCollection } from '@reduxjs/toolkit/dist/query/core/buildThunks'
 
-// type UpdateDeckRequest = {
-//   cover?: null | string
-//   isPrivate?: boolean
-//   name?: string
-// }
-
-// type UpdateDeckResponse = {
-//   author: {
-//     id: string
-//     name: string
-//   }
-//   cardsCount: number
-//   cover: null | string
-//   created: string
-//   id: string
-//   isPrivate: boolean
-//   name: string
-//   updated: string
-//   userId: string
-// }
-
 export const decksService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
