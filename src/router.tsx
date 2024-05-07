@@ -46,6 +46,7 @@ export const Router = () => {
 }
 
 function PrivateRoutes() {
+  // todo: нужно удалить, когда будет готова авторизация
   const isAuthenticated = true
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/sign-in'} />
