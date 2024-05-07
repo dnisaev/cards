@@ -1,6 +1,8 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 
-import { App } from '@/App'
+import { Router } from '@/router'
+import { store } from '@/services/store'
 import ReactDOM from 'react-dom/client'
 
 import './styles/index.scss'
@@ -9,6 +11,8 @@ import '@fontsource/roboto/700.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <Router />
+    </Provider>
   </React.StrictMode>
 )
