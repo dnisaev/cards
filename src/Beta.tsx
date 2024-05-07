@@ -1,14 +1,14 @@
+import LogOutOutline from '@/assets/icons/LogOutOutline'
 import { SignIn } from '@/components/auth/SignIn/SignIn'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Checkbox } from '@/components/ui/Checkbox'
-import { Icon } from '@/components/ui/Icon/'
 import { RadioGroup } from '@/components/ui/RadioGroup'
 import { Select } from '@/components/ui/Select'
 import { TabContent, Tabs } from '@/components/ui/Tabs/Tabs'
 import { Decks } from '@/pages/decks'
 
-export const AppPresent = () => {
+export const Beta = () => {
   const radioGroupExampleArray = [
     { label: 'First value', value: 'first' },
     { label: 'Second value', value: 'second' },
@@ -77,7 +77,7 @@ export const AppPresent = () => {
             <Button variant={'primary'}>Button Primary</Button>
 
             <Button variant={'primary'}>
-              <Icon iconId={'logout'} />
+              <LogOutOutline />
               Button Primary Icon
             </Button>
 
@@ -89,7 +89,7 @@ export const AppPresent = () => {
           <div>
             <Button variant={'secondary'}>Button Secondary</Button>
             <Button variant={'secondary'}>
-              <Icon iconId={'logout'} />
+              <LogOutOutline />
               Button Secondary Icon
             </Button>
             <Button disabled variant={'secondary'}>
@@ -99,7 +99,7 @@ export const AppPresent = () => {
           <hr />
           <div>
             <Button as={'a'} href={'/'} variant={'primary'}>
-              <Icon iconId={'logout'} />
+              <LogOutOutline />
               Button Primary as Link
             </Button>
           </div>

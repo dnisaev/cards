@@ -6,7 +6,8 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { AppPresent } from '@/AppPresent'
+import { App } from '@/App'
+import { Beta } from '@/Beta'
 import { SignIn } from '@/components/auth/SignIn'
 import { useGetDecksQuery } from '@/services/decks/decksService'
 
@@ -27,8 +28,12 @@ const publicRoutes: RouteObject[] = [
 
 const privateRoutes: RouteObject[] = [
   {
-    element: <AppPresent />,
+    element: <App />,
     path: '/',
+  },
+  {
+    element: <Beta />,
+    path: '/beta',
   },
 ]
 
